@@ -808,6 +808,7 @@
                 var classNum = Math.floor((Math.random() * 4) + 1);
                 var className = loadout["class"][classNum];
                 console.log(className);
+                document.getElementById("loadoutClass").innerHTML = className;
 
                 var rowLength;
                 var setting;
@@ -823,6 +824,7 @@
                     }
                     else {
                         console.log(weaponName + ": " + settingString + " + " + loadout["primary"][className][weaponNum][i][setting]);
+                        document.getElementById("loadoutPrimary").innerHTML = weaponName + ": " + settingString + " + " + loadout["primary"][className][weaponNum][i][setting];
                     }
                 }
 
@@ -837,11 +839,13 @@
                     }
                     else {
                         console.log(weaponName + ": " + settingString + " + " + loadout["secondary"][className][weaponNum][i][setting]);
+                        document.getElementById("loadoutSecondary").innerHTML = weaponName + ": " + settingString + " + " + loadout["secondary"][className][weaponNum][i][setting] + "\n";
                     }
                 }
 
                 setting = Math.floor((Math.random() * 3) + 1);
                 console.log("Pickaxe: 1" + setting);
+                document.getElementById("loadoutPickaxe").innerHTML = "Pickaxe: 1" + setting + "\n";
 
                 settingString = "";
                 for (var i = 1; i < Object.keys(loadout["support"][className]).length; i++) {
@@ -849,6 +853,7 @@
                     settingString += Math.floor((Math.random() * rowLength) + 1);
                 }
                 console.log(loadout["support"][className][0] + ": " + settingString);
+                document.getElementById("loadoutSupport").innerHTML = loadout["support"][className][0] + ": " + settingString + "\n";
 
                 settingString = "";
                 for (var i = 1; i < Object.keys(loadout["mobility"][className]).length; i++) {
@@ -856,9 +861,11 @@
                     settingString += Math.floor((Math.random() * rowLength) + 1);
                 }
                 console.log(loadout["mobility"][className][0] + ": " + settingString);
+                document.getElementById("loadoutMobility").innerHTML = loadout["mobility"][className][0] + ": " + settingString + "\n";
 
                 setting = Math.floor((Math.random() * 3) + 1);
                 console.log(loadout["grenade"][className][setting]);
+                document.getElementById("loadoutGrenade").innerHTML = loadout["grenade"][className][setting] + "\n";
 
                 settingString = "";
                 for (var i = 1; i <= 4; i++) {
@@ -866,6 +873,7 @@
                     settingString += Math.floor((Math.random() * rowLength) + 1);
                 }
                 console.log("Armor: " + settingString);
+                document.getElementById("loadoutArmor").innerHTML = "Armor: " + settingString + "\n";
 
                 settingString = "";
                 var perkArray = [];
@@ -881,6 +889,7 @@
                     perkArray.splice(setting, 1);
                 }
                 console.log("Passives: " + settingString);
+                document.getElementById("loadoutPassive").innerHTML = "Passives: " + settingString + "\n";
 
                 settingString = "";
                 perkArray = [];
@@ -896,9 +905,9 @@
                     perkArray.splice(setting, 1);
                 }
                 console.log("Actives: " + settingString);
+                document.getElementById("loadoutActive").innerHTML = "Actives: " + settingString + "\n";
 
                 console.log("--------------------------------------");
-
             }
             function select() {
 
@@ -908,8 +917,18 @@
     <body>
         <div>
             <button onclick="random()">Randomize</button>
+            <div id="loadoutClass"></div>
+            <div id="loadoutPrimary"></div>
+            <div id="loadoutSecondary"></div>
+            <div id="loadoutPickaxe"></div>
+            <div id="loadoutSupport"></div>
+            <div id="loadoutMobility"></div>
+            <div id="loadoutGrenade"></div>
+            <div id="loadoutArmor"></div>
+            <div id="loadoutPassive"></div>
+            <div id="loadoutActive"></div>
         </div>
-        <div id="loadout">
+        <div id="loadout" style="display: none;">
             <div id="left">
                 <div id="primary" class="mainTile multiTile">
                     <div id="primaryOptions" class="multiOptions">
