@@ -27,7 +27,7 @@
                     'picNa picka'
                     'supNa suppo'
                     'mobNa mobil'
-                    'greNa greNa'
+                    'greNa grena'
                     'armNa armor'
                     'pasNa passi'
                     'actNa activ';
@@ -91,6 +91,9 @@
             }
             #loadoutGrenadeName {
                 grid-area: greNa;
+            }
+            #loadoutGrenade {
+                grid-area: grena;
             }
             #loadoutArmorName {
                 grid-area: armNa;
@@ -982,7 +985,7 @@
 
                 setting = Math.floor((Math.random() * 3) + 1);
                 console.log(loadout["grenade"][className][setting]);
-                document.getElementById("loadoutGrenadeName").innerHTML = loadout["grenade"][className][setting];
+                document.getElementById("loadoutGrenade").innerHTML = loadout["grenade"][className][setting];
 
                 settingString = "";
                 for (var i = 1; i <= 4; i++) {
@@ -1040,7 +1043,7 @@
             <div id="loadoutPickaxeName" class="consoleLeft">Pickaxe</div><div id="loadoutPickaxe" class="consoleRight"></div>
             <div id="loadoutSupportName" class="consoleLeft">Support</div><div id="loadoutSupport" class="consoleRight"></div>
             <div id="loadoutMobilityName" class="consoleLeft">Mobility</div><div id="loadoutMobility" class="consoleRight"></div>
-            <div id="loadoutGrenadeName" class="consoleMid">Grenade</div>
+            <div id="loadoutGrenadeName" class="consoleLeft">Grenade</div><div id="loadoutGrenade" class="consoleRight"></div>
             <div id="loadoutArmorName" class="consoleLeft">Armor</div><div id="loadoutArmor" class="consoleRight"></div>
             <div id="loadoutPassiveName" class="consoleLeft">Passives</div><div id="loadoutPassive" class="consoleRight"></div>
             <div id="loadoutActiveName" class="consoleLeft">Actives</div><div id="loadoutActive" class="consoleRight"></div>
