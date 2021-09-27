@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Deep RNG Galactic</title>
+        <style>
+
+        </style>
+        <script>
+            const loadout = {
+                "class": {
+                    1: "Driller",
+                    2: "Engineer",
+                    3: "Gunner",
+                    4: "Scout",
+                },
+                "primary": {
+                    "Driller": {
+                        1: {
+                            0: "CRSPR Flamethrower",
+                            1: {
+                                1: "High Capacity Tanks",
+                                2: "High Pressure Ejector",
+                            },
+                            2: {
+                                1: "Unfiltered Fuel",
+                                2: "Triple Filtered Fuel",
+                                3: "Sticky Flame Duration",
+                            },
+                            3: {
+                                1: "Oversized Valves",
+                                2: "Sticky Flame Slowdown",
+                                3: "More Fuel",
+                            },
+                            4: {
+                                1: "It Burns!",
+                                2: "Sticky Flame Duration",
+                                3: "More Fuel",
+                            },
+                            5: {
+                                1: "Heat Radiance",
+                                2: "Targets Explode",
+                            },
+                            6: {
+                                1: "Fuel Stream Diffuser",
+                                2: "Sticky Fuel",
+                                3: "Sticky Additive",
+                                4: "Compact Feed Valves",
+                                5: "Face Melter",
+                                6: "Lighter Tanks",
+                            },
+                        },
+                        2: {
+                            0: "Cryo Cannon",
+                            1: {
+                                1: "Larger Pressure Chamber",
+                                2: "Faster Turbine Spinup",
+                                3: "Stronger Cooling Unit",
+                            },
+                            2: {
+                                1: "Larger Reserve Tank",
+                                2: "Overclocked Ejection Turbine",
+                                3: "Bypassed Integrity Check",
+                            },
+                            3: {
+                                1: "Improved Pump",
+                                2: "Increased Flow Volume",
+                            },
+                            4: {
+                                1: "Hard Mixture",
+                                2: "Supercooling Mixture",
+                                3: "Larger Reserve Tank",
+                            },
+                            5: {
+                                1: "Fragile",
+                                2: "Cold Radiance",
+                            },
+                            6: {
+                                1: "Ice Storm",
+                                2: "Ice Spear",
+                                3: "Snowball",
+                                4: "Improved Thermal Efficiency",
+                                5: "Tuned Cooler",
+                                6: "Flow Rate Expansion",
+                            },
+                        },
+                    },
+                    "Engineer": {
+                        1: {
+                            0: '"Warthog" Auto 210',
+                            1: {
+                                1: "Supercharged Feed Mechanism",
+                                2: "Overstuffed Magazine",
+                            },
+                            2: {
+                                1: "Expanded Ammo Bags",
+                                2: "Loaded Shells",
+                                3: "Choke",
+                            },
+                            3: {
+                                1: "Recoil Dampener",
+                                2: "Quickfire Ejector",
+                                3: "High Capacity Magazine",
+                            },
+                            4: {
+                                1: "Tungsten Coated Buckshot",
+                                2: "Bigger Pellets",
+                            },
+                            5: {
+                                1: "Turret Whip",
+                                2: "Miner Adjustments",
+                            },
+                            6: {
+                                1: "Cycle Overload",
+                                2: "Magnetic Pellet Alignment",
+                                3: "Light-Weight Magazines",
+                                4: "Stunner",
+                                5: "Mini Shells",
+                            },
+                        },
+                        2: {
+                            0: '"Stubby" Voltaic SMG',
+                            1: {
+                                1: "Increased Caliber Rounds",
+                                2: "Upgraded Capacitors",
+                                3: "Expanded Ammo Bags",
+                            },
+                            2: {
+                                1: "High Capacity Magazine",
+                                2: "Recoil Dampener",
+                                3: "Improved Gas System",
+                            },
+                            3: {
+                                1: "High Velocity Rounds",
+                                2: "Expanded Ammo Bags",
+                            },
+                            4: {
+                                1: "Hollow-Point Bullets",
+                                2: "Conductive Bullets",
+                            },
+                            5: {
+                                1: "Magazine Capacity Tweak",
+                                2: "Electric Arc",
+                            },
+                            6: {
+                                1: "Turret EM Discharge",
+                                2: "Turret Arc",
+                                3: "Well Oiled Machine",
+                                4: "Light-Weight Rounds",
+                                5: "EM Refire Booster",
+                                6: "Super-Slim Rounds",
+                            },
+                        },
+                    },
+                    "Gunner": {
+                        1: {
+                            0: '"Lead Storm" Powered Minigun',
+                            1: {
+                                1: "Magnetic Refrigeration",
+                                2: "Improved Motor",
+                                3: "Improved Platform Stability",
+                            },
+                            2: {
+                                1: "Oversized Drum",
+                                2: "High Velocity Rounds",
+                            },
+                            3: {
+                                1: "Hardened Rounds",
+                                2: "Improved Stun",
+                                3: "Blowthrough Rounds",
+                            },
+                            4: {
+                                1: "Variable Chamber Pressure",
+                                2: "Lighter Barrel Assembly",
+                                3: "Magnetic Bearings",
+                            },
+                            5: {
+                                1: "Aggressive Venting",
+                                2: "Cold As The Grave",
+                                3: "Hot Bullets",
+                            },
+                            6: {
+                                1: "Bullet Hell",
+                                2: "Lead Storm",
+                                3: "A Little More Oomph!",
+                                4: "Burning Hell",
+                                5: "Compact Feed Mechanism",
+                                6: "Thinned Drum Walls",
+                                7: "Exhaust Vectoring",
+                            },
+                        },
+                        2: {
+                            0: '"Thunderhead" Heavy Autocannon',
+                            1: {
+                                1: "Increased Caliber Rounds",
+                                2: "High Capacity Magazine",
+                                3: "Expanded Ammo Bags",
+                            },
+                            2: {
+                                1: "Tighter Barrel Alignment",
+                                2: "Improved Gas System",
+                                3: "Lighter Barrel Assembly",
+                            },
+                            3: {
+                                1: "Supercharged Feed Mechanism",
+                                2: "Loaded Rounds",
+                                3: "High Velocity Rounds",
+                            },
+                            4: {
+                                1: "Hardened Rounds",
+                                2: "Shrapnel Rounds",
+                            },
+                            5: {
+                                1: "Feedback Loop",
+                                2: "Suppressive Fire",
+                                3: "Damage Resistance At Full ROF",
+                            },
+                            6: {
+                                1: "Combat Mobility",
+                                2: "Neurotoxin Payload",
+                                3: "Splintering Shells",
+                                4: "Big Bertha",
+                                5: "Carpet Bomber",
+                                6: "Composite Drums",
+                            },
+                        },
+                    },
+                    "Scout": {
+                        1: {
+                            0: "Deepcore GK2",
+                            1: {
+                                1: "Gyro Stabilisation",
+                                2: "Supercharged Feed Mechanism",
+                            },
+                            2: {
+                                1: "Increased Caliber Rounds",
+                                2: "Expanded Ammo Bags",
+                            },
+                            3: {
+                                1: "Floating Barrel",
+                                2: "Improved Propellant",
+                                3: "High Capacity Magazine",
+                            },
+                            4: {
+                                1: "Hollow-Point Bullets",
+                                2: "Hardened Rounds",
+                                3: "Improved Gas System",
+                            },
+                            5: {
+                                1: "Battle Frenzy",
+                                2: "Battle Cool",
+                                3: "Stun",
+                            },
+                            6: {
+                                1: "Gas Rerouting",
+                                2: "Bullets Of Mercy",
+                                3: "Compact Ammo",
+                                4: "Homebrew Powder",
+                                5: "Electrifying Reload",
+                                6: "AI Stability Engine",
+                                7: "Overclocked Firing Mechanism",
+                            },
+                        },
+                        2: {
+                            0: "M1000 Classic",
+                            1: {
+                                1: "Expanded Ammo Bags",
+                                2: "Increased Caliber Rounds",
+                            },
+                            2: {
+                                1: "Fast-Charging Coils",
+                                2: "Better Weight Balance",
+                                3: "Hardened Rounds",
+                            },
+                            3: {
+                                1: "Killer Focus",
+                                2: "Extended Clip",
+                            },
+                            4: {
+                                1: "Super Blowthrough Rounds",
+                                2: "Hollow-Point Bullets",
+                            },
+                            5: {
+                                1: "Hitting Where It Hurts",
+                                2: "Precision Terror",
+                                3: "Killing Machine",
+                            },
+                            6: {
+                                1: "Hoverclock",
+                                2: "Active Stability System",
+                                3: "Hipster",
+                                4: "Minimal Clips",
+                                5: "Supercooling Chamber",
+                                6: "Electrocuting Focus Shots",
+                            },
+                        },
+                    },
+                },
+                "secondary": {
+                    "Driller": {
+                        1: {
+                            0: "Subata 120",
+                            1: {
+                                1: "Improved Alignment",
+                                2: "High Capacity Magazine",
+                                3: "Quickfire Ejector",
+                            },
+                            2: {
+                                1: "Expanded Ammo Bags",
+                                2: "Increased Caliber Rounds",
+                            },
+                            3: {
+                                1: "Improved Propellant",
+                                2: "Recoil Compensator",
+                                3: "Expanded Ammo Bags",
+                            },
+                            4: {
+                                1: "Hollow-Point Bullets",
+                                2: "High Velocity Rounds",
+                            },
+                            5: {
+                                1: "Volatile Bullets",
+                                2: "Mactera Toxin-Coating",
+                            },
+                            6: {
+                                1: "Automatic Fire",
+                                2: "Homebrew Powder",
+                                3: "Tranquilizer Rounds",
+                                4: "Chain Hit",
+                                5: "Oversized Magazine",
+                                6: "Explosive Reload",
+                            },
+                        },
+                        2: {
+                            0: "Experimental Plasma Charger",
+                            1: {
+                                1: "Increased Particle Density",
+                                2: "Larger Battery",
+                                3: "Higher Charged Plasma Energy",
+                            },
+                            2: {
+                                1: "Heat Shield",
+                                2: "Overcharged Plasma Accelerator",
+                            },
+                            3: {
+                                1: "Improved Charge Efficiency",
+                                2: "Crystal Capacitors",
+                                3: "Tweaked Radiator",
+                            },
+                            4: {
+                                1: "Expanded Plasma Splash",
+                                2: "High Density Battery",
+                                3: "Reactive Shockwave",
+                            },
+                            5: {
+                                1: "Flying Nightmare",
+                                2: "Thin Containment Field",
+                                3: "Plasma Burn",
+                            },
+                            6: {
+                                1: "Magnetic Cooling Unit",
+                                2: "Heavy Hitter",
+                                3: "Persistent Plasma",
+                                4: "Heat Pipe",
+                                5: "Overcharger",
+                                6: "Energy Rerouting",
+                            },
+                        },
+                    },
+                    "Engineer": {
+                        1: {
+                            0: "Deepcore 40mm PGL",
+                            1: {
+                                1: "Fragmentary Shell",
+                                2: "Extra Ammo",
+                                3: "HE Compound",
+                            },
+                            2: {
+                                1: "Expanded Ammo Bags",
+                                2: "Larger Payload",
+                            },
+                            3: {
+                                1: "Incendiary Compound",
+                                2: "Pressure Wave",
+                                3: "High Velocity Grenades",
+                            },
+                            4: {
+                                1: "Homebrew Explosive",
+                                2: "Nails + Tape",
+                                3: "Concussive Blast",
+                            },
+                            5: {
+                                1: "Proximity Trigger",
+                                2: "Spiky Grenade",
+                                3: "Disabled Inertia Inhibitor",
+                            },
+                            6: {
+                                1: "Clean Sweep",
+                                2: "RJ250 Compound",
+                                3: "Hyper Propellant",
+                                4: "Compact Rounds",
+                                5: "Pack Rat",
+                                6: "Fat Boy",
+                            },
+                        },
+                        2: {
+                            0: "Breach Cutter",
+                            1: {
+                                1: "Prolonged Power Generation",
+                                2: "High Capacity Magazine",
+                            },
+                            2: {
+                                1: "Expanded Ammo Bags",
+                                2: "Condensed Plasma",
+                                3: "Loosened Node Cohesion",
+                            },
+                            3: {
+                                1: "Quick Deploy",
+                                2: "Improved Case Ejector",
+                            },
+                            4: {
+                                1: "Armor Breaking",
+                                2: "Disruptive Frequency Tuning",
+                            },
+                            5: {
+                                1: "Explosive Goodbye",
+                                2: "Plasma Trail",
+                                3: "Triple Split Line",
+                            },
+                            6: {
+                                1: "Spinning Death",
+                                2: "Inferno",
+                                3: "Return To Sender",
+                                4: "Roll Control",
+                                5: "Light-Weight Cases",
+                                6: "Stronger Plasma Current",
+                                7: "High Voltage Crossover",
+                            },
+                        },
+                    },
+                    "Gunner": {
+                        1: {
+                            0: '"Bulldog" Heavy Revolver' ,
+                            1: {
+                                1: "Quickfire Ejector",
+                                2: "Perfect Weight Balance",
+                            },
+                            2: {
+                                1: "Increased Caliber Rounds",
+                                2: "Floating Barrel",
+                                3: "Expanded Ammo Bags",
+                            },
+                            3: {
+                                1: "Super Blowthrough Rounds",
+                                2: "Explosive Rounds",
+                                3: "Hollow-Point Bullets",
+                            },
+                            4: {
+                                1: "Expanded Ammo Bags",
+                                2: "High Velocity Rounds",
+                            },
+                            5: {
+                                1: "Dead-Eye",
+                                2: "Neurotoxin Coating",
+                            },
+                            6: {
+                                1: "Chain Hit",
+                                2: "Six Shooter",
+                                3: "Volatile Bullets",
+                                4: "Magic Bullets",
+                                5: "Elephant Rounds",
+                                6: "Homebrew Powder",
+                            },
+                        },
+                        2: {
+                            0: "BRT7 Burst Fire Gun",
+                            1: {
+                                1: "High Velocity Rounds",
+                                2: "Floating Barrel",
+                                3: "Blowthrough Rounds",
+                            },
+                            2: {
+                                1: "Recoil Dampener",
+                                2: "Quickfire Ejector",
+                                3: "Disabled Safety",
+                            },
+                            3: {
+                                1: "High Capacity Magazine",
+                                2: "Increased Caliber Rounds",
+                            },
+                            4: {
+                                1: "Hardened Rounds",
+                                2: "Expanded Ammo Bags",
+                                3: "Hollow-Point Bullets",
+                            },
+                            5: {
+                                1: "Burst Stun",
+                                2: "Longer Burst",
+                            },
+                            6: {
+                                1: "Lead Spray",
+                                2: "Experimental Rounds",
+                                3: "Full Chamber Seal",
+                                4: "Micro Flechettes",
+                                5: "Compact Mags",
+                                6: "Composite Casings",
+                                7: "Electro Minelets",
+                            },
+                        },
+                    },
+                    "Scout": {
+                        1: {
+                            0: "Jury-Rigged Boomstick",
+                            1: {
+                                1: "Expanded Ammo Bags",
+                                2: "Double-Sized Buckshot",
+                            },
+                            2: {
+                                1: "Double Trigger",
+                                2: "Quickfire Ejector",
+                            },
+                            3: {
+                                1: "Improved Stun",
+                                2: "Expanded Ammo Bags",
+                                3: "High Capacity Shells",
+                            },
+                            4: {
+                                1: "Super Blowthrough Rounds",
+                                2: "Tungsten Coated Buckshot",
+                                3: "Improved Blast Wave",
+                            },
+                            5: {
+                                1: "Auto Reload",
+                                2: "Fear The Boomstick",
+                                3: "White Phosphorous Shells",
+                            },
+                            6: {
+                                1: "Double Barrel",
+                                2: "Compact Shells",
+                                3: "Special Powder",
+                                4: "Shaped Shells",
+                                5: "Jumbo Shells",
+                                6: "Stuffed Shells",
+                            },
+                        },
+                        2: {
+                            0: "Zhukov NUK17",
+                            1: {
+                                1: "Expanded Ammo Bags",
+                                2: "High Velocity Rounds",
+                            },
+                            2: {
+                                1: "High Capacity Magazine",
+                                2: "Supercharged Feed Mechanism",
+                                3: "Quickfire Ejector",
+                            },
+                            3: {
+                                1: "Increased Caliber Rounds",
+                                2: "Better Weight Balance",
+                            },
+                            4: {
+                                1: "Blowthrough Rounds",
+                                2: "Hollow-Point Bullets",
+                                3: "Expanded Ammo Bags",
+                            },
+                            5: {
+                                1: "Conductive Bullets",
+                                2: "Get In, Get Out",
+                            },
+                            6: {
+                                1: "Embedded Detonators",
+                                2: "Minimal Magazines",
+                                3: "Cryo Minelets",
+                                4: "Custom Casings",
+                                5: "Gas Recycling",
+                            },
+                        },
+                    },
+                },
+                "pickaxe": {
+                    1: {
+                        1: "Power Attack",
+                    },
+                    2: {
+                        1: "Serrated Edge",
+                        2: "Shockwave",
+                        3: "Better Weight Balance",
+                    },
+                },
+                "support": {
+                    "Driller": {
+                        0: "Satchel Charge",
+                        1: {
+                            1: "Fragmentary Shell",
+                            2: "Extra Satchel Charge",
+                            3: "Bigger Charge",
+                        },
+                        2: {
+                            1: "Kill Switch",
+                        },
+                        3: {
+                            1: "Extra Satchel Charge",
+                            2: "Volatile Compound",
+                        },
+                        4: {
+                            1: "Big Bang",
+                            2: "Concussive Blast",
+                            3: "Rock Mover",
+                        },
+                    },
+                    "Engineer": {
+                        0: "LMG Gun Platform",
+                        1: {
+                            1: "Gemini System",
+                            2: "LMG MKII",
+                        },
+                        2: {
+                            1: "Expanded Ammo Bags",
+                            2: "Quick Deploy",
+                            3: "Widemouth Refill Port",
+                        },
+                        3: {
+                            1: "Hardened Rounds",
+                            2: "Stun",
+                            3: "Expanded Ammo Capacity",
+                        },
+                        4: {
+                            1: "Defender System",
+                            2: "Hawkeye System",
+                        },
+                    },
+                    "Gunner": {
+                        0: "Shield Generator",
+                        1: {
+                            1: "Streamlined Integrity Check",
+                            2: "Improved Projector",
+                        },
+                        2: {
+                            1: "Fast Charging Capacitors",
+                            2: "Larger Capacitors",
+                        },
+                        3: {
+                            1: "Supercharged Coils",
+                            2: "Lasting Effect",
+                            3: "Improved Efficiency",
+                        },
+                    },
+                    "Scout": {
+                        0: "Flare Gun",
+                        1: {
+                            1: "Expanded Ammo Bags",
+                            2: "Thicker Core",
+                        },
+                        2: {
+                            1: "Supercharged Feed Mechanism",
+                            2: "High Capacity Magazine",
+                        },
+                        3: {
+                            1: "Auto Reload",
+                            2: "Expanded Ammo Bags",
+                            3: "Magnesium Core",
+                        },
+                    },
+                },
+                "mobility": {
+                    "Driller": {
+                        0: "Reinforced Power Drills",
+                        1: {
+                            1: "Barbed Drills",
+                            2: "Hardened Drill Tips",
+                            3: "Expanded Fuel Tanks",
+                        },
+                        2: {
+                            1: "Magnetic Refrigeration",
+                            2: "Streamlined Integrity Check",
+                        },
+                        3: {
+                            1: "Supercharged Motor",
+                        },
+                        4: {
+                            1: "Increased Tank Pressure",
+                            2: "Bloody Cold Drills",
+                        },
+                    },
+                    "Engineer": {
+                        0: "Platform Gun",
+                        1: {
+                            1: "Supercharged Feed Mechanism",
+                            2: "Expanded Ammo Bags",
+                            3: "High Capacity Magazine",
+                        },
+                        2: {
+                            1: "Plastcrete MKII",
+                        },
+                        3: {
+                            1: "Expanded Ammo Bags",
+                            2: "Repellant Additive",
+                            3: "Disabled Inertia Inhibitor",
+                        },
+                    },
+                    "Gunner": {
+                        0: "Zipline Launcher",
+                        1: {
+                            1: "Expanded Ammo Bags",
+                            2: "Upgraded Connection Joint",
+                            3: "Reinforced Anchor",
+                        },
+                        2: {
+                            1: "Reinforced Cable",
+                        },
+                        3: {
+                            1: "Disconnection Protection",
+                            2: "Increased Motor Traction",
+                        },
+                    },
+                    "Scout": {
+                        0: "Grappling Hook",
+                        1: {
+                            1: "Improved Recharger",
+                            2: "Longer Cable",
+                        },
+                        2: {
+                            1: "Greater Cable Stretch",
+                        },
+                        3: {
+                            1: "High Velocity Ejection System",
+                            2: "Overcharged Winch",
+                        },
+                        4: {
+                            1: "Safety First",
+                            2: "Momentum",
+                            3: "Bypassed Integrity Check",
+                        },
+                    },
+                },
+                "grenade": {
+                    "Driller": {
+                        1: "Impact Axe",
+                        2: "HE Grenade",
+                        3: "Neurotoxin Grenade",
+                    },
+                    "Engineer": {
+                        1: "L.U.R.E.",
+                        2: "Plasma Burster",
+                        3: "Proximity Mine",
+                    },
+                    "Gunner": {
+                        1: "Sticky",
+                        2: "Incendiary",
+                        3: "Cluster",
+                    },
+                    "Scout": {
+                        1: "IFG",
+                        2: "Cryo Grenade",
+                        3: "Pheromone Canister",
+                    },
+                },
+                "armor": {
+                    1: {
+                        1: "Improved Generator",
+                        2: "Boosted Converter",
+                        3: "Bigger Mineral Bag",
+                    },
+                    2: {
+                        1: "Overcharger",
+                        2: "Healthy",
+                    },
+                    3: {
+                        1: "Resistance",
+                    },
+                    4: {
+                        1: "Shockwave",
+                        2: "Static Discharge",
+                        3: "Breathing Room",
+                    },
+                },
+                "passive": {
+                    0: "Blank",
+                    1: "Deep Pockets",
+                    2: "Veteran Depositor",
+                    3: "Sweet Tooth",
+                    4: "Resupplier",
+                    5: "Unstoppable",
+                    6: "Vampire",
+                    7: "Strong Arm",
+                    8: "Friendly",
+                    9: "Elemental Insulation",
+                    10: "Second Wind",
+                    11: "Born Ready",
+                    12: "It's A Bug Thing",
+                    13: "Thorns",
+                },
+                "active": {
+                    0: "Blank",
+                    1: "Berzerker",
+                    2: "Field Medic",
+                    3: "Iron Will",
+                    4: "Heightened Senses",
+                    5: "Shield Link",
+                    6: "Dash",
+                    7: "Beast Master",
+                    8: "See You In Hell",
+                    9: "Hover Boots",
+                },
+            }
+            function random() {
+                var classNum = Math.floor((Math.random() * 4) + 1);
+                var className = loadout["class"][classNum];
+                console.log(className);
+
+                var rowLength;
+                var setting;
+                var settingString = "";
+
+                var weaponNum = Math.floor((Math.random() * 2) + 1);
+                var weaponName = loadout["primary"][className][weaponNum][0];
+                for (var i = 1; i <= 6; i++) {
+                    rowLength = Object.keys(loadout["primary"][className][weaponNum][i]).length;
+                    setting = Math.floor((Math.random() * rowLength) + 1);
+                    if (i != 6) {
+                        settingString += setting;
+                    }
+                    else {
+                        console.log(weaponName + ": " + settingString + " + " + loadout["primary"][className][weaponNum][i][setting]);
+                    }
+                }
+
+                settingString = "";
+                weaponNum = Math.floor((Math.random() * 2) + 1);
+                weaponName = loadout["secondary"][className][weaponNum][0];
+                for (var i = 1; i <= 6; i++) {
+                    rowLength = Object.keys(loadout["secondary"][className][weaponNum][i]).length;
+                    setting = Math.floor((Math.random() * rowLength) + 1);
+                    if (i != 6) {
+                        settingString += setting;
+                    }
+                    else {
+                        console.log(weaponName + ": " + settingString + " + " + loadout["secondary"][className][weaponNum][i][setting]);
+                    }
+                }
+
+                setting = Math.floor((Math.random() * 3) + 1);
+                console.log("Pickaxe: 1" + setting);
+
+                settingString = "";
+                for (var i = 1; i < Object.keys(loadout["support"][className]).length; i++) {
+                    rowLength = Object.keys(loadout["support"][className][i]).length;
+                    settingString += Math.floor((Math.random() * rowLength) + 1);
+                }
+                console.log(loadout["support"][className][0] + ": " + settingString);
+
+                settingString = "";
+                for (var i = 1; i < Object.keys(loadout["mobility"][className]).length; i++) {
+                    rowLength = Object.keys(loadout["mobility"][className][i]).length;
+                    settingString += Math.floor((Math.random() * rowLength) + 1);
+                }
+                console.log(loadout["mobility"][className][0] + ": " + settingString);
+
+                setting = Math.floor((Math.random() * 3) + 1);
+                console.log(loadout["grenade"][className][setting]);
+
+                settingString = "";
+                for (var i = 1; i <= 4; i++) {
+                    rowLength = Object.keys(loadout["armor"][i]).length;
+                    settingString += Math.floor((Math.random() * rowLength) + 1);
+                }
+                console.log("Armor: " + settingString);
+
+                settingString = "";
+                var perkArray = [];
+                for (var i = 1; i <= 13; i++) {
+                    perkArray[i - 1] = loadout["passive"][i];
+                }
+                for (var i = 1; i <= 3; i++) {
+                    setting = Math.floor(Math.random() * perkArray.length);
+                    settingString += perkArray[setting];
+                    if (i != 3) {
+                        settingString += ", ";
+                    }
+                    perkArray.splice(setting, 1);
+                }
+                console.log("Passives: " + settingString);
+
+                settingString = "";
+                perkArray = [];
+                for (var i = 1; i <= 9; i++) {
+                    perkArray[i - 1] = loadout["active"][i];
+                }
+                for (var i = 1; i <= 2; i++) {
+                    setting = Math.floor(Math.random() * perkArray.length);
+                    settingString += perkArray[setting];
+                    if (i != 2) {
+                        settingString += ", ";
+                    }
+                    perkArray.splice(setting, 1);
+                }
+                console.log("Actives: " + settingString);
+
+                console.log("--------------------------------------");
+
+            }
+            function select() {
+
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <button onclick="random()">Randomize</button>
+        </div>
+        <div id="loadout">
+            <div id="left">
+                <div id="primary" class="mainTile multiTile">
+                    <div id="primaryOptions" class="multiOptions">
+                        <div id="primaryA">
+                            <div id="primaryAName"></div>
+                            <div id="primaryAIcon"></div>
+                        </div>
+                        <div id="primaryB">
+                            <div id="primaryBName"></div>
+                            <div id="primaryBIcon"></div>
+                        </div>
+                    </div>
+                    <div id="primaryLoadouts" class="multiLoadouts">
+                        <div id="primary1" class="multiTileLoadout">
+                            <div id="primary1Text" class="multiRowText"></div>
+                            <div id="primary1Icons" class="multiRowIcons">
+                                <div id="primary1Icon1" class="multiRowIcon multiRowIcon1"></div>
+                                <div id="primary1Icon2" class="multiRowIcon multiRowIcon2"></div>
+                                <div id="primary1Icon3" class="multiRowIcon multiRowIcon3"></div>
+                            </div>
+                        </div>
+                        <div id="primary2" class="multiTileLoadout">
+                            <div id="primary2Text" class="multiRowText"></div>
+                            <div id="primary2Icons" class="multiRowIcons">
+                                <div id="primary2Icon1" class="multiRowIcon multiRowIcon1"></div>
+                                <div id="primary2Icon2" class="multiRowIcon multiRowIcon2"></div>
+                                <div id="primary2Icon3" class="multiRowIcon multiRowIcon3"></div>
+                            </div>
+                        </div>
+                        <div id="primary3" class="multiTileLoadout">
+                            <div id="primary3Text" class="multiRowText"></div>
+                            <div id="primary3Icons" class="multiRowIcons">
+                                <div id="primary3Icon1" class="multiRowIcon multiRowIcon1"></div>
+                                <div id="primary3Icon2" class="multiRowIcon multiRowIcon2"></div>
+                                <div id="primary3Icon3" class="multiRowIcon multiRowIcon3"></div>
+                            </div>
+                        </div>
+                        <div id="primary4" class="multiTileLoadout">
+                            <div id="primary4Text" class="multiRowText"></div>
+                            <div id="primary4Icons" class="multiRowIcons">
+                                <div id="primary4Icon1" class="multiRowIcon multiRowIcon1"></div>
+                                <div id="primary4Icon2" class="multiRowIcon multiRowIcon2"></div>
+                                <div id="primary4Icon3" class="multiRowIcon multiRowIcon3"></div>
+                            </div>
+                        </div>
+                        <div id="primary5" class="multiTileLoadout">
+                            <div id="primary5Text" class="multiRowText"></div>
+                            <div id="primary5Icons" class="multiRowIcons">
+                                <div id="primary5Icon1" class="multiRowIcon multiRowIcon1"></div>
+                                <div id="primary5Icon2" class="multiRowIcon multiRowIcon2"></div>
+                                <div id="primary5Icon3" class="multiRowIcon multiRowIcon3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="secondary" class="mainTile multiTile">
+                    <div id="secondaryOptions" class="multiOptions">
+                        <div id="secdonaryA">
+                            <div id="secondaryAName"></div>
+                            <div id="secondaryAIcon"></div>
+                        </div>
+                        <div id="secondaryB">
+                            <div id="secondaryBName"></div>
+                            <div id="secondaryBIcon"></div>
+                        </div>
+                    </div>
+                    <div id="secondaryLoadouts" class="multiLoadouts">
+                        <div id="secondary1" class="multiTileLoadout">
+                            <div id="secondary1Text" class="multiRowText"></div>
+                            <div id="secondary1Icons" class="multiRowIcons">
+                                <div id="secondary1Icon1" class="multiRowIcon multiRowIcon1"></div>
+                                <div id="secondary1Icon2" class="multiRowIcon multiRowIcon2"></div>
+                                <div id="secondary1Icon3" class="multiRowIcon multiRowIcon3"></div>
+                            </div>
+                        </div>
+                        <div id="secondary2" class="multiTileLoadout">
+                            <div id="secondary2Text" class="multiRowText"></div>
+                            <div id="secondary2Icons" class="multiRowIcons">
+                                <div id="secondary2Icon1" class="multiRowIcon multiRowIcon1"></div>
+                                <div id="secondary2Icon2" class="multiRowIcon multiRowIcon2"></div>
+                                <div id="secondary2Icon3" class="multiRowIcon multiRowIcon3"></div>
+                            </div>
+                        </div>
+                        <div id="secondary3" class="multiTileLoadout">
+                            <div id="secondary3Text" class="multiRowText"></div>
+                            <div id="secondary3Icons" class="multiRowIcons">
+                                <div id="secondary3Icon1" class="multiRowIcon multiRowIcon1"></div>
+                                <div id="secondary3Icon2" class="multiRowIcon multiRowIcon2"></div>
+                                <div id="secondary3Icon3" class="multiRowIcon multiRowIcon3"></div>
+                            </div>
+                        </div>
+                        <div id="secondary4" class="multiTileLoadout">
+                            <div id="secondary4Text" class="multiRowText"></div>
+                            <div id="secondary4Icons" class="multiRowIcons">
+                                <div id="secondary4Icon1" class="multiRowIcon multiRowIcon1"></div>
+                                <div id="secondary4Icon2" class="multiRowIcon multiRowIcon2"></div>
+                                <div id="secondary4Icon3" class="multiRowIcon multiRowIcon3"></div>
+                            </div>
+                        </div>
+                        <div id="secondary5" class="multiTileLoadout">
+                            <div id="secondary5Text" class="multiRowText"></div>
+                            <div id="secondary5Icons" class="multiRowIcons">
+                                <div id="secondary5Icon1" class="multiRowIcon multiRowIcon1"></div>
+                                <div id="secondary5Icon2" class="multiRowIcon multiRowIcon2"></div>
+                                <div id="secondary5Icon3" class="multiRowIcon multiRowIcon3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pickaxe" class="mainTile">
+                    <div id="pickaxeName" class="tileName">Pickaxe</div>
+                    <div id=pickaxeLoadout" class="tileLoadout">
+                        <div id="pickaxe1" class="soloRow">
+                            <div id="pickaxe1Text" class="soloRowText"></div>
+                            <div id="pickaxe1Icons" class="soloRowIcons">
+                                <div id="pickaxe1Icon1" class="soloRowIcon soloRowIcon1"></div>
+                            </div>
+                        </div>
+                        <div id="pickaxe2" class="soloRow">
+                            <div id="pickaxe2Text" class="soloRowText"></div>
+                            <div id="pickaxe2Icons" class="soloRowIcons">
+                                <div id="pickaxe2Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                <div id="pickaxe2Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                <div id="pickaxe2Icon3" class="soloRowIcon soloRowIcon3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="flare" class="mainTile">
+                    <div id="flareName">Medium-Intensity Flare</div>
+                </div>
+            </div>
+            <div id="middle">
+                <div id="primaryOverclock" class="midTile">
+                    <div id="primaryOverclockText" class="overclockText"></div>
+                    <div id="primaryOverclock1" class="overclockRow">
+                        <div id="primaryOverclock1Icon1" class="overclockIcon overclockIcon1"></div>
+                        <div id="primaryOverclock1Icon2" class="overclockIcon overclockIcon2"></div>
+                        <div id="primaryOverclock1Icon3" class="overclockIcon overclockIcon3"></div>
+                    </div>
+                    <div id="primaryOverclock2" class="overclockRow">
+                        <div id="primaryOverclock2Icon1" class="overclockIcon overclockIcon1"></div>
+                        <div id="primaryOverclock2Icon2" class="overclockIcon overclockIcon2"></div>
+                        <div id="primaryOverclock2Icon3" class="overclockIcon overclockIcon3"></div>
+                    </div>
+                    <div id="primaryOverclock3" class="overclockRow">
+                        <div id="primaryOverclock3Icon1" class="overclockIcon overclockIcon1"></div>
+                        <div id="primaryOverclock3Icon2" class="overclockIcon overclockIcon2"></div>
+                        <div id="primaryOverclock3Icon3" class="overclockIcon overclockIcon3"></div>
+                    </div>
+                </div>
+                <div id="secondaryOverclock" class="midTile">
+                    <div id="secondaryOverclockText" class="overclockText"></div>
+                    <div id="secondaryOverclock1" class="overclockRow">
+                        <div id="secondaryOverclock1Icon1" class="overclockIcon overclockIcon1"></div>
+                        <div id="secondaryOverclock1Icon2" class="overclockIcon overclockIcon2"></div>
+                        <div id="secondaryOverclock1Icon3" class="overclockIcon overclockIcon3"></div>
+                    </div>
+                    <div id="secondaryOverclock2" class="overclockRow">
+                        <div id="secondaryOverclock2Icon1" class="overclockIcon overclockIcon1"></div>
+                        <div id="secondaryOverclock2Icon2" class="overclockIcon overclockIcon2"></div>
+                        <div id="secondaryOverclock2Icon3" class="overclockIcon overclockIcon3"></div>
+                    </div>
+                    <div id="secondaryOverclock3" class="overclockRow">
+                        <div id="secondaryOverclock3Icon1" class="overclockIcon overclockIcon1"></div>
+                        <div id="secondaryOverclock3Icon2" class="overclockIcon overclockIcon2"></div>
+                        <div id="secondaryOverclock3Icon3" class="overclockIcon overclockIcon3"></div>
+                    </div>
+                </div>
+                <div id="perkPassive" class="midTile">
+                    <div id="passive1" class="perkRow">
+                        <div id="passive1Icon1" class="perkIcon perkIcon1"></div>
+                        <div id="passive1Icon2" class="perkIcon perkIcon2"></div>
+                        <div id="passive1Icon3" class="perkIcon perkIcon3"></div>
+                        <div id="passive1Icon4" class="perkIcon perkIcon4"></div>
+                    </div>
+                    <div id="passive2" class="perkRow">
+                        <div id="passive2Icon1" class="perkIcon perkIcon1"></div>
+                        <div id="passive2Icon2" class="perkIcon perkIcon2"></div>
+                        <div id="passive2Icon3" class="perkIcon perkIcon3"></div>
+                        <div id="passive2Icon4" class="perkIcon perkIcon4"></div>
+                    </div>
+                    <div id="passive3" class="perkRow">
+                        <div id="passive3Icon1" class="perkIcon perkIcon1"></div>
+                        <div id="passive3Icon2" class="perkIcon perkIcon2"></div>
+                        <div id="passive3Icon3" class="perkIcon perkIcon3"></div>
+                        <div id="passive3Icon4" class="perkIcon perkIcon4"></div>
+                    </div>
+                    <div id="passive4" class="perkRow">
+                        <div id="passive4Icon1" class="perkIcon perkIcon1"></div>
+                        <div id="passive4Icon2" class="perkIcon perkIcon2"></div>
+                    </div>
+                </div>
+                <div id="perkActive" class="midTile">
+                    <div id="active1" class="perkRow">
+                        <div id="active1Icon1" class="perkIcon perkIcon1"></div>
+                        <div id="active1Icon2" class="perkIcon perkIcon2"></div>
+                        <div id="active1Icon3" class="perkIcon perkIcon3"></div>
+                        <div id="active1Icon4" class="perkIcon perkIcon4"></div>
+                    </div>
+                    <div id="active2" class="perkRow">
+                        <div id="active2Icon1" class="perkIcon perkIcon1"></div>
+                        <div id="active2Icon2" class="perkIcon perkIcon2"></div>
+                        <div id="active2Icon3" class="perkIcon perkIcon3"></div>
+                        <div id="active2Icon4" class="perkIcon perkIcon4"></div>
+                    </div>
+                    <div id="active3" class="perkRow">
+                        <div id="active3Icon1" class="perkIcon perkIcon1"></div>
+                        <div id="active3Icon2" class="perkIcon perkIcon2"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="right">
+                <div id="support" class="mainTile">
+                    <div id="support1" class="soloRow">
+                        <div id="supportName" class="tileName"></div>
+                        <div id="supportLoadout" class="tileLoadout">
+                            <div id="support1" class="tileLoadout">
+                                <div id="support1Text" class="soloRowText"></div>
+                                <div id="support1Icons" class="soloRowIcons">
+                                    <div id="support1Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                    <div id="support1Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                    <div id="support1Icon3" class="soloRowIcon soloRowIcon3"></div>
+                                </div>
+                            </div>
+                            <div id="support2" class="soloRow">
+                                <div id="support2Text" class="soloRowText"></div>
+                                <div id="support2Icons" class="soloRowIcons">
+                                    <div id="support2Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                    <div id="support2Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                    <div id="support2Icon3" class="soloRowIcon soloRowIcon3"></div>
+                                </div>
+                            </div>
+                            <div id="support3" class="soloRow">
+                                <div id="support3Text" class="soloRowText"></div>
+                                <div id="support3Icons" class="soloRowIcons">
+                                    <div id="support3Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                    <div id="support3Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                    <div id="support3Icon3" class="soloRowIcon soloRowIcon3"></div>
+                                </div>
+                            </div>
+                            <div id="support4" class="soloRow">
+                                <div id="support4Text" class="soloRowText"></div>
+                                <div id="support4Icons" class="soloRowIcons">
+                                    <div id="support4Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                    <div id="support4Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                    <div id="support4Icon3" class="soloRowIcon soloRowIcon3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="mobility" class="mainTile">
+                    <div id="mobilityName" class="tileName"></div>
+                    <div id="mobilityLoadout" class="tileLoadout">
+                        <div id="mobility1" class="soloRow">
+                            <div id="mobility1Text" class="soloRowText"></div>
+                            <div id="mobility1Icons" class="soloRowIcons">
+                                <div id="mobility1Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                <div id="mobility1Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                <div id="mobility1Icon3" class="soloRowIcon soloRowIcon3"></div>
+                            </div>
+                        </div>
+                        <div id="mobility2" class="soloRow">
+                            <div id="mobility2Text" class="soloRowText"></div>
+                            <div id="mobility2Icons" class="soloRowIcons">
+                                <div id="mobility2Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                <div id="mobility2Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                <div id="mobility2Icon3" class="soloRowIcon soloRowIcon3"></div>
+                            </div>
+                        </div>
+                        <div id="mobility3" class="soloRow">
+                            <div id="mobility3Text" class="soloRowText"></div>
+                            <div id="mobility3Icons" class="soloRowIcons">
+                                <div id="mobility3Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                <div id="mobility3Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                <div id="mobility3Icon3" class="soloRowIcon soloRowIcon3"></div>
+                            </div>
+                        </div>
+                        <div id="mobility4" class="soloRow">
+                            <div id="mobility4Text" class="soloRowText"></div>
+                            <div id="mobility4Icons" class="soloRowIcons">
+                                <div id="mobility4Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                <div id="mobility4Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                <div id="mobility4Icon3" class="soloRowIcon soloRowIcon3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="grenade" class="mainTile">
+                    <div id="grenadeName" class="tileName"></div>
+                    <div id="grenadeLoadout" class="tileLoadout">
+                        <div id="grenade1" class="grenadeRow">
+                            <div id="grenade1Text" class="soloRowText"></div>
+                            <div id="grenade1Icon" class="soloRowIcons"></div>
+                        </div>
+                        <div id="grenade2" class="grenadeRow">
+                            <div id="grenade2Text" class="soloRowText"></div>
+                            <div id="grenade2Icon" class="soloRowIcons"></div>
+                        </div>
+                        <div id="grenade3" class="grenadeRow">
+                            <div id="grenade3Text" class="soloRowText"></div>
+                            <div id="grenade3Icon" class="soloRowIcons"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="armor" class="mainTile">
+                    <div id="armorName" class="tileName">Armor Rig</div>
+                    <div id="armorLoadout" class="tileLoadout">
+                        <div id="armor1" class="soloRow">
+                            <div id="armor1Text" class="soloRowText"></div>
+                            <div id="armor1Icons" class="soloRowIcons">
+                                <div id="armor1Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                <div id="armor1Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                <div id="armor1Icon3" class="soloRowIcon soloRowIcon3"></div>
+                            </div>
+                        </div>
+                        <div id="armor2" class="soloRow">
+                            <div id="armor2Text" class="soloRowText"></div>
+                            <div id="armor2Icons" class="soloRowIcons">
+                                <div id="armor2Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                <div id="armor2Icon2" class="soloRowIcon soloRowIcon2"></div>
+                            </div>
+                        </div>
+                        <div id="armor3" class="soloRow">
+                            <div id="armor3Text" class="soloRowText"></div>
+                            <div id="armor3Icons" class="soloRowIcons">
+                                <div id="armor3Icon1" class="soloRowIcon soloRowIcon1"></div>
+                            </div>
+                        </div>
+                        <div id="armor4" class="soloRow">
+                            <div id="armor4Text" class="soloRowText"></div>
+                            <div id="armor4Icons" class="soloRowIcons">
+                                <div id="armor4Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                <div id="armor4Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                <div id="armor4Icon3" class="soloRowIcon soloRowIcon3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="class">
+                <div class="classTile">Driller</div>
+                <div class="classTile">Engineer</div>
+                <div class="classTile">Gunner</div>
+                <div class="classTile">Scout</div>
+            </div>
+        </table>
+    </body>
+</html>
