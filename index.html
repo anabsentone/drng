@@ -3,9 +3,122 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <title>Deep RNG Galactic</title>
         <style>
-
+            html {
+                background-color: rgb(18, 66, 82);
+                color: white;
+                font-family: 'Roboto';
+                font-size: calc(10px + 0.75vw);
+            }
+            #console {
+                background-color: rgb(44, 76, 88);
+                margin: 20vh 10vw;
+                padding: 3vh 3vw;
+                display: grid;
+                grid-template-areas:
+                    'butto butto'
+                    'class class'
+                    'priNa prima'
+                    'secNa secon'
+                    'picNa picka'
+                    'supNa suppo'
+                    'mobNa mobil'
+                    'greNa greNa'
+                    'armNa armor'
+                    'pasNa passi'
+                    'actNa activ';
+            }
+            #console > div {
+                background-color: rgb(18, 31, 36);
+                padding: 0.5vh;
+                margin: 3px;
+            }
+            #console > #buttonDiv {
+                background-color: rgb(44, 76, 88);
+                padding: 0 0.5vh 0.5vh 0.5vh;
+                margin: 0 3px 3px 3px;
+                text-align: center;
+                grid-area: butto;
+            }
+            #buttonDiv > button {                
+                margin: 5px;
+                padding: 10px 20px;
+                border-width: 6px;
+                border-style: solid;
+                border-radius: 12px;
+            }
+            #buttonDiv > button:hover {
+                font-weight: bold;
+                background-color: lightblue;
+                border-color: rgb(18, 31, 36);
+            }
+            #loadoutClass {
+                grid-area: class;
+            }
+            #loadoutPrimaryName {
+                grid-area: priNa;
+            }
+            #loadoutPrimary {
+                grid-area: prima;
+            }
+            #loadoutSecondaryName {
+                grid-area: secNa;
+            }
+            #loadoutSecondary {
+                grid-area: secon;
+            }
+            #loadoutPickaxeName {
+                grid-area: picNa;
+            }
+            #loadoutPickaxe {
+                grid-area: picka;
+            }
+            #loadoutSupportName {
+                grid-area: supNa;
+            }
+            #loadoutSupport {
+                grid-area: suppo;
+            }
+            #loadoutMobilityName {
+                grid-area: mobNa;
+            }
+            #loadoutMobility {
+                grid-area: mobil;
+            }
+            #loadoutGrenadeName {
+                grid-area: greNa;
+            }
+            #loadoutArmorName {
+                grid-area: armNa;
+            }
+            #loadoutArmor {
+                grid-area: armor;
+            }
+            #loadoutPassiveName {
+                grid-area: pasNa;
+            }
+            #loadoutPassive {
+                grid-area: passi;
+            }
+            #loadoutActiveName {
+                grid-area: actNa;
+            }
+            #loadoutActive {
+                grid-area: activ;
+            }
+            .consoleLeft {
+                text-align: right;
+            }
+            .consoleMid {
+                text-align: center;
+            }
+            .consoleRight {
+                text-align: left;
+            }
         </style>
         <script>
             const loadout = {
@@ -824,7 +937,8 @@
                     }
                     else {
                         console.log(weaponName + ": " + settingString + " + " + loadout["primary"][className][weaponNum][i][setting]);
-                        document.getElementById("loadoutPrimary").innerHTML = weaponName + ": " + settingString + " + " + loadout["primary"][className][weaponNum][i][setting];
+                        document.getElementById("loadoutPrimaryName").innerHTML = weaponName;
+                        document.getElementById("loadoutPrimary").innerHTML = settingString + " + " + loadout["primary"][className][weaponNum][i][setting];
                     }
                 }
 
@@ -839,13 +953,14 @@
                     }
                     else {
                         console.log(weaponName + ": " + settingString + " + " + loadout["secondary"][className][weaponNum][i][setting]);
-                        document.getElementById("loadoutSecondary").innerHTML = weaponName + ": " + settingString + " + " + loadout["secondary"][className][weaponNum][i][setting] + "\n";
+                        document.getElementById("loadoutSecondaryName").innerHTML = weaponName;
+                        document.getElementById("loadoutSecondary").innerHTML = settingString + " + " + loadout["secondary"][className][weaponNum][i][setting];
                     }
                 }
 
                 setting = Math.floor((Math.random() * 3) + 1);
                 console.log("Pickaxe: 1" + setting);
-                document.getElementById("loadoutPickaxe").innerHTML = "Pickaxe: 1" + setting + "\n";
+                document.getElementById("loadoutPickaxe").innerHTML = "1" + setting;
 
                 settingString = "";
                 for (var i = 1; i < Object.keys(loadout["support"][className]).length; i++) {
@@ -853,7 +968,8 @@
                     settingString += Math.floor((Math.random() * rowLength) + 1);
                 }
                 console.log(loadout["support"][className][0] + ": " + settingString);
-                document.getElementById("loadoutSupport").innerHTML = loadout["support"][className][0] + ": " + settingString + "\n";
+                document.getElementById("loadoutSupportName").innerHTML = loadout["support"][className][0];
+                document.getElementById("loadoutSupport").innerHTML = settingString;
 
                 settingString = "";
                 for (var i = 1; i < Object.keys(loadout["mobility"][className]).length; i++) {
@@ -861,11 +977,12 @@
                     settingString += Math.floor((Math.random() * rowLength) + 1);
                 }
                 console.log(loadout["mobility"][className][0] + ": " + settingString);
-                document.getElementById("loadoutMobility").innerHTML = loadout["mobility"][className][0] + ": " + settingString + "\n";
+                document.getElementById("loadoutMobilityName").innerHTML = loadout["mobility"][className][0];
+                document.getElementById("loadoutMobility").innerHTML = settingString;
 
                 setting = Math.floor((Math.random() * 3) + 1);
                 console.log(loadout["grenade"][className][setting]);
-                document.getElementById("loadoutGrenade").innerHTML = loadout["grenade"][className][setting] + "\n";
+                document.getElementById("loadoutGrenadeName").innerHTML = loadout["grenade"][className][setting];
 
                 settingString = "";
                 for (var i = 1; i <= 4; i++) {
@@ -873,7 +990,7 @@
                     settingString += Math.floor((Math.random() * rowLength) + 1);
                 }
                 console.log("Armor: " + settingString);
-                document.getElementById("loadoutArmor").innerHTML = "Armor: " + settingString + "\n";
+                document.getElementById("loadoutArmor").innerHTML = settingString;
 
                 settingString = "";
                 var perkArray = [];
@@ -889,7 +1006,7 @@
                     perkArray.splice(setting, 1);
                 }
                 console.log("Passives: " + settingString);
-                document.getElementById("loadoutPassive").innerHTML = "Passives: " + settingString + "\n";
+                document.getElementById("loadoutPassive").innerHTML = settingString;
 
                 settingString = "";
                 perkArray = [];
@@ -905,7 +1022,7 @@
                     perkArray.splice(setting, 1);
                 }
                 console.log("Actives: " + settingString);
-                document.getElementById("loadoutActive").innerHTML = "Actives: " + settingString + "\n";
+                document.getElementById("loadoutActive").innerHTML = settingString;
 
                 console.log("--------------------------------------");
             }
@@ -915,18 +1032,18 @@
         </script>
     </head>
     <body>
-        <div>
-            <button onclick="random()">Randomize</button>
-            <div id="loadoutClass"></div>
-            <div id="loadoutPrimary"></div>
-            <div id="loadoutSecondary"></div>
-            <div id="loadoutPickaxe"></div>
-            <div id="loadoutSupport"></div>
-            <div id="loadoutMobility"></div>
-            <div id="loadoutGrenade"></div>
-            <div id="loadoutArmor"></div>
-            <div id="loadoutPassive"></div>
-            <div id="loadoutActive"></div>
+        <div id="console">
+            <div id="buttonDiv"><button onclick="random()">Randomize</button></div>
+            <div id="loadoutClass" class="consoleMid">Class</div>
+            <div id="loadoutPrimaryName" class="consoleLeft">Primary</div><div id="loadoutPrimary" class="consoleRight"></div>
+            <div id="loadoutSecondaryName" class="consoleLeft">Secondary</div><div id="loadoutSecondary" class="consoleRight"></div>
+            <div id="loadoutPickaxeName" class="consoleLeft">Pickaxe</div><div id="loadoutPickaxe" class="consoleRight"></div>
+            <div id="loadoutSupportName" class="consoleLeft">Support</div><div id="loadoutSupport" class="consoleRight"></div>
+            <div id="loadoutMobilityName" class="consoleLeft">Mobility</div><div id="loadoutMobility" class="consoleRight"></div>
+            <div id="loadoutGrenadeName" class="consoleMid">Grenade</div>
+            <div id="loadoutArmorName" class="consoleLeft">Armor</div><div id="loadoutArmor" class="consoleRight"></div>
+            <div id="loadoutPassiveName" class="consoleLeft">Passives</div><div id="loadoutPassive" class="consoleRight"></div>
+            <div id="loadoutActiveName" class="consoleLeft">Actives</div><div id="loadoutActive" class="consoleRight"></div>
         </div>
         <div id="loadout" style="display: none;">
             <div id="left">
