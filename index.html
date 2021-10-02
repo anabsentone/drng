@@ -26,7 +26,7 @@
                     'secNa secon'
                     'picNa picka'
                     'supNa suppo'
-                    'mobNa mobil'
+                    'traNa trave'
                     'greNa grena'
                     'armNa armor'
                     'pasNa passi'
@@ -83,11 +83,11 @@
             #loadoutSupport {
                 grid-area: suppo;
             }
-            #loadoutMobilityName {
-                grid-area: mobNa;
+            #loadoutTraversalName {
+                grid-area: traNa;
             }
-            #loadoutMobility {
-                grid-area: mobil;
+            #loadoutTraversal {
+                grid-area: trave;
             }
             #loadoutGrenadeName {
                 grid-area: greNa;
@@ -779,7 +779,7 @@
                         },
                     },
                 },
-                "mobility": {
+                "traversal": {
                     "Driller": {
                         0: "Reinforced Power Drills",
                         1: {
@@ -975,13 +975,13 @@
                 document.getElementById("loadoutSupport").innerHTML = settingString;
 
                 settingString = "";
-                for (var i = 1; i < Object.keys(loadout["mobility"][className]).length; i++) {
-                    rowLength = Object.keys(loadout["mobility"][className][i]).length;
+                for (var i = 1; i < Object.keys(loadout["traversal"][className]).length; i++) {
+                    rowLength = Object.keys(loadout["traversal"][className][i]).length;
                     settingString += Math.floor((Math.random() * rowLength) + 1);
                 }
-                console.log(loadout["mobility"][className][0] + ": " + settingString);
-                document.getElementById("loadoutMobilityName").innerHTML = loadout["mobility"][className][0];
-                document.getElementById("loadoutMobility").innerHTML = settingString;
+                console.log(loadout["traversal"][className][0] + ": " + settingString);
+                document.getElementById("loadoutTraversalName").innerHTML = loadout["traversal"][className][0];
+                document.getElementById("loadoutTraversal").innerHTML = settingString;
 
                 setting = Math.floor((Math.random() * 3) + 1);
                 console.log(loadout["grenade"][className][setting]);
@@ -1042,7 +1042,7 @@
             <div id="loadoutSecondaryName" class="consoleLeft">Secondary</div><div id="loadoutSecondary" class="consoleRight"></div>
             <div id="loadoutPickaxeName" class="consoleLeft">Pickaxe</div><div id="loadoutPickaxe" class="consoleRight"></div>
             <div id="loadoutSupportName" class="consoleLeft">Support</div><div id="loadoutSupport" class="consoleRight"></div>
-            <div id="loadoutMobilityName" class="consoleLeft">Mobility</div><div id="loadoutMobility" class="consoleRight"></div>
+            <div id="loadoutTraversalName" class="consoleLeft">Traversal</div><div id="loadoutTraversal" class="consoleRight"></div>
             <div id="loadoutGrenadeName" class="consoleLeft">Grenade</div><div id="loadoutGrenade" class="consoleRight"></div>
             <div id="loadoutArmorName" class="consoleLeft">Armor</div><div id="loadoutArmor" class="consoleRight"></div>
             <div id="loadoutPassiveName" class="consoleLeft">Passives</div><div id="loadoutPassive" class="consoleRight"></div>
@@ -1301,39 +1301,39 @@
                         </div>
                     </div>
                 </div>
-                <div id="mobility" class="mainTile">
-                    <div id="mobilityName" class="tileName"></div>
-                    <div id="mobilityLoadout" class="tileLoadout">
-                        <div id="mobility1" class="soloRow">
-                            <div id="mobility1Text" class="soloRowText"></div>
-                            <div id="mobility1Icons" class="soloRowIcons">
-                                <div id="mobility1Icon1" class="soloRowIcon soloRowIcon1"></div>
-                                <div id="mobility1Icon2" class="soloRowIcon soloRowIcon2"></div>
-                                <div id="mobility1Icon3" class="soloRowIcon soloRowIcon3"></div>
+                <div id="traversal" class="mainTile">
+                    <div id="traversalName" class="tileName"></div>
+                    <div id="traversalLoadout" class="tileLoadout">
+                        <div id="traversal1" class="soloRow">
+                            <div id="traversal1Text" class="soloRowText"></div>
+                            <div id="traversal1Icons" class="soloRowIcons">
+                                <div id="traversal1Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                <div id="traversal1Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                <div id="traversal1Icon3" class="soloRowIcon soloRowIcon3"></div>
                             </div>
                         </div>
-                        <div id="mobility2" class="soloRow">
-                            <div id="mobility2Text" class="soloRowText"></div>
-                            <div id="mobility2Icons" class="soloRowIcons">
-                                <div id="mobility2Icon1" class="soloRowIcon soloRowIcon1"></div>
-                                <div id="mobility2Icon2" class="soloRowIcon soloRowIcon2"></div>
-                                <div id="mobility2Icon3" class="soloRowIcon soloRowIcon3"></div>
+                        <div id="traversal2" class="soloRow">
+                            <div id="traversal2Text" class="soloRowText"></div>
+                            <div id="traversal2Icons" class="soloRowIcons">
+                                <div id="traversal2Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                <div id="traversal2Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                <div id="traversal2Icon3" class="soloRowIcon soloRowIcon3"></div>
                             </div>
                         </div>
-                        <div id="mobility3" class="soloRow">
-                            <div id="mobility3Text" class="soloRowText"></div>
-                            <div id="mobility3Icons" class="soloRowIcons">
-                                <div id="mobility3Icon1" class="soloRowIcon soloRowIcon1"></div>
-                                <div id="mobility3Icon2" class="soloRowIcon soloRowIcon2"></div>
-                                <div id="mobility3Icon3" class="soloRowIcon soloRowIcon3"></div>
+                        <div id="traversal3" class="soloRow">
+                            <div id="traversal3Text" class="soloRowText"></div>
+                            <div id="traversal3Icons" class="soloRowIcons">
+                                <div id="traversal3Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                <div id="traversal3Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                <div id="traversal3Icon3" class="soloRowIcon soloRowIcon3"></div>
                             </div>
                         </div>
-                        <div id="mobility4" class="soloRow">
-                            <div id="mobility4Text" class="soloRowText"></div>
-                            <div id="mobility4Icons" class="soloRowIcons">
-                                <div id="mobility4Icon1" class="soloRowIcon soloRowIcon1"></div>
-                                <div id="mobility4Icon2" class="soloRowIcon soloRowIcon2"></div>
-                                <div id="mobility4Icon3" class="soloRowIcon soloRowIcon3"></div>
+                        <div id="traversal4" class="soloRow">
+                            <div id="traversal4Text" class="soloRowText"></div>
+                            <div id="traversal4Icons" class="soloRowIcons">
+                                <div id="traversal4Icon1" class="soloRowIcon soloRowIcon1"></div>
+                                <div id="traversal4Icon2" class="soloRowIcon soloRowIcon2"></div>
+                                <div id="traversal4Icon3" class="soloRowIcon soloRowIcon3"></div>
                             </div>
                         </div>
                     </div>
